@@ -2,7 +2,7 @@ package tournament;
 
 import java.util.Random;
 
-public class Actions extends Thread {
+class Actions extends Thread {
     private Match match;
     private Fighter contender;
     private Fighter opponent;
@@ -80,7 +80,7 @@ public class Actions extends Thread {
         return dodging;
     }
 
-    public void setOpponentsActions(Actions opponentsActions) {
+    void setOpponentsActions(Actions opponentsActions) {
         this.opponentsActions = opponentsActions;
     }
 
@@ -91,14 +91,4 @@ public class Actions extends Thread {
             System.out.println(placeOfError);
         }
     }
-
-    public Fighter getContender() {
-        return contender;
-    }
-
-    public Fighter getOpponent() {
-        return opponent;
-    }
-
-
 }

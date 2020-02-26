@@ -2,28 +2,19 @@ package tournament;
 
 import java.util.ArrayList;
 
-public class Recap {
+class Recap {
     private Fighter contender;
     private Fighter opponent;
     private ArrayList<String> recap;
     private Fighter winner;
-    private String round;
-    private boolean tournamentWinner = false;
+    private String bracket;
 
     Recap() {
         this.recap = new ArrayList<>();
     }
 
-    public boolean isTournamentWinner() {
-        return tournamentWinner;
-    }
-
-    public void setTournamentWinner(boolean tournamentWinner) {
-        this.tournamentWinner = tournamentWinner;
-    }
-
-    void setBracket(String round) {
-        this.round = round;
+    void setBracket(String bracket) {
+        this.bracket = bracket;
     }
 
     void addToRecap(String action) {
@@ -46,23 +37,19 @@ public class Recap {
         return winner;
     }
 
-    public String getRound() {
-        return round;
+    String getBracket() {
+        return bracket;
     }
 
-    void setRound(String round) {
-        this.round = round;
-    }
-
-    public Fighter getContender() {
+    Fighter getContender() {
         return contender;
     }
 
-    public Fighter getOpponent() {
+    Fighter getOpponent() {
         return opponent;
     }
 
-    public ArrayList<String> getRecap() {
+    ArrayList<String> getRecap() {
         return recap;
     }
 }

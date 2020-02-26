@@ -2,20 +2,20 @@ package tournament;
 
 import java.util.ArrayList;
 
-public class Tournament {
+class Tournament {
     private static Tournament instance = new Tournament();
 
     private ArrayList<Fighter> qualifiers = new ArrayList<>();
     private ArrayList<Match> matches = new ArrayList<>();
 
     private Match currentMatch;
-    private String bracket = "null?";
+    private String bracket;
     private Fighter winner;
 
     private Tournament() {
     }
 
-    public static Tournament getInstance() {
+    static Tournament getInstance() {
         return instance;
     }
 
@@ -26,13 +26,13 @@ public class Tournament {
         setBracketString();
     }
 
-    void startNextMatch(){
+    void startNextMatch() {
         currentMatch = matches.get(0);
         currentMatch.getRecap().setBracket(bracket);
         currentMatch.startCombat();
     }
 
-    void matchEnded(Fighter winner){
+    void matchEnded(Fighter winner) {
         this.winner = winner;
 
         // Prints winner
@@ -44,7 +44,7 @@ public class Tournament {
         matches.remove(0);
 
         // Ends the tier(eg. Quarter-Finals) if all matches in tier been played
-        if (getMatchesLeft() != 0) {
+        if (getMatches().size() != 0) {
             Menu.brackets();
         } else {
             endBracket();
@@ -52,10 +52,10 @@ public class Tournament {
     }
 
     // Ends curernt tier
-    private void endBracket(){
+    private void endBracket() {
 
         // Checks if Finals been played and ends tournament, else returns to menu
-        if (bracket.equalsIgnoreCase("finals")) {
+        if (bracket.equalsIgnoreCase(Brackets.FINALS.getBracket())) {
             endTournament();
         } else {
             View.printBracketEnded(bracket);
@@ -72,7 +72,7 @@ public class Tournament {
         Menu.endOfTournament();
     }
 
-    public String getBracket() {
+    String getBracket() {
         return bracket;
     }
 
@@ -80,16 +80,13 @@ public class Tournament {
         try {
             switch (matches.size()) {
                 case 1:
-                    bracket = "Finals";
+                    bracket = Brackets.FINALS.getBracket();
                     break;
                 case 2:
-                    bracket = "Semi-Finals";
+                    bracket = Brackets.SEMIFINALS.getBracket();
                     break;
                 case 4:
-                    bracket = "Quarter-Finals";
-                    break;
-                case 8:
-                    bracket = "Octo-Finals";
+                    bracket = Brackets.QUARTERFINALS.getBracket();
                     break;
             }
         } catch (IndexOutOfBoundsException e) {
@@ -98,7 +95,7 @@ public class Tournament {
         }
     }
 
-    int getMatchesLeft() {
-        return matches.size();
+    ArrayList<Match> getMatches() {
+        return matches;
     }
 }

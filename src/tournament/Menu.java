@@ -3,7 +3,7 @@ package tournament;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+class Menu {
     private static String input;
     private static Scanner scanner = new Scanner(System.in);
 
@@ -37,7 +37,7 @@ public class Menu {
         // Prints current bracket and matches left
 
         do {
-            View.printBracketMenu(tournament.getBracket(), tournament.getMatchesLeft());
+            View.printBracketMenu();
 
             input = scanner.nextLine();
 
@@ -46,11 +46,14 @@ public class Menu {
                     tournament.startNextMatch();
                     break;
                 case "2":
+                    View.printTournamentStatus();
+                    break;
+                case "3":
                     System.exit(0);
                 default:
                     View.tryAgain();
             }
-        } while (!input.equalsIgnoreCase("2"));
+        } while (!input.equalsIgnoreCase("3"));
     }
 
     static void rounds(Match match) {

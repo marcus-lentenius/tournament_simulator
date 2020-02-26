@@ -1,7 +1,8 @@
 package tournament;
 
-public class View {
+class View {
     private static String addToRecap;
+    private static Tournament tournament = Tournament.getInstance();
 
     // Round printouts
 
@@ -27,10 +28,11 @@ public class View {
 
     // Menu printouts
 
-    static void printBracketMenu(String bracket, int matchesLeft) {
-        System.out.println(bracket + "\n" +
-                "Matches left: " + matchesLeft + "\n" +
+    static void printBracketMenu() {
+        System.out.println(tournament.getBracket() + "\n" +
+                "Matches left: " + tournament.getMatches().size() + "\n" +
                 "1. Start next match\n" +
+                "2. Show tournament status\n" +
                 "2. Quit");
     }
 
@@ -80,7 +82,7 @@ public class View {
     }
 
     // Recap printouts
-    public static void printMatchRecap(String contender, String opponent) {
+    static void printMatchRecap(String contender, String opponent) {
         ScoreBoard.getRecapList().stream()
                 .filter(recap -> recap.getContender().getName().equalsIgnoreCase(contender)
                         && recap.getOpponent().getName().equalsIgnoreCase(opponent))
@@ -88,11 +90,11 @@ public class View {
                         .forEach(System.out::println));
     }
 
-    public static void recapMenuEnterContender() {
+    static void recapMenuEnterContender() {
         System.out.println("Enter the name of the contender");
     }
 
-    public static void recapMenuEnterOpponent() {
+    static void recapMenuEnterOpponent() {
         System.out.println("Enter the name of the opponent");
     }
 
@@ -105,8 +107,8 @@ public class View {
         System.out.println("\nWinners:");
 
         ScoreBoard.getRecapList().forEach(recap -> System.out.printf("" +
-                        "%-20s %-7s vs %-7s | Winner: %s\n",
-                recap.getRound(),
+                        "%-15s %-7s vs %-7s | Winner: %s\n",
+                recap.getBracket(),
                 recap.getContender().getName(),
                 recap.getOpponent().getName(),
                 recap.getWinner().getName()));
@@ -139,7 +141,7 @@ public class View {
 
     // Match printouts
 
-    public static void printMatchWinner(Fighter fighter) {
+    static void printMatchWinner(Fighter fighter) {
         System.out.println("_________________________________________________________________________");
         System.out.println(fighter.getName() + " wins the match and shouts \"" + fighter.getQuote() + "\n");
     }
@@ -150,7 +152,7 @@ public class View {
         System.out.println("Ultimate champion = " + winner);
     }
 
-    public static void printEndOfTournamentMenu() {
+    static void printEndOfTournamentMenu() {
         System.out.println("Tournament ended\n" +
                 "1. Show tournament winner\n" +
                 "2. Show bracket results\n" +
@@ -160,7 +162,32 @@ public class View {
 
     // Others
 
-    public static void tryAgain() {
+    static void tryAgain() {
         System.out.println("Try again");
+    }
+
+    static void printTournamentStatus() {
+        System.out.println("Matches played:");
+        ScoreBoard.getRecapList().forEach(recap -> System.out.printf("" +
+                        "%-15s %-7s vs %-7s | Winner: %s\n",
+                recap.getBracket(),
+                recap.getContender().getName(),
+                recap.getOpponent().getName(),
+                recap.getWinner().getName()));
+
+        System.out.println("\nUpcoming matches:");
+        tournament.getMatches().forEach(match -> System.out.printf("" +
+                        "%-15s %-7s vs %-7s\n",
+                tournament.getBracket(),
+                match.getContender().getName(),
+                match.getOpponent().getName()));
+        if (tournament.getBracket().equalsIgnoreCase(Brackets.QUARTERFINALS.getBracket())) {
+            System.out.println("Fighters for " + Brackets.SEMIFINALS.getBracket() + " has yet to be matched");
+            System.out.println("Fighters for " + Brackets.FINALS.getBracket() + " has yet to be matched");
+        }
+        if (tournament.getBracket().equalsIgnoreCase(Brackets.SEMIFINALS.getBracket())) {
+            System.out.println("Fighters for " + Brackets.FINALS.getBracket() + " has yet to be matched");
+        }
+        System.out.println();
     }
 }

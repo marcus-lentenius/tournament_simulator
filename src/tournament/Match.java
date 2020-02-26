@@ -1,6 +1,6 @@
 package tournament;
 
-public class Match {
+class Match {
     private Actions contenderActions;
     private Actions opponentActions;
     private Fighter contender;
@@ -11,13 +11,12 @@ public class Match {
     private int currentRound = 1;
     private int contenderRoundsWon = 0;
 
-    public Match(Fighter contender, Fighter opponent) {
+    Match(Fighter contender, Fighter opponent) {
         this.recap = new Recap();
         this.tournament = Tournament.getInstance();
         this.opponent = opponent;
         this.contender = contender;
 
-        ScoreBoard.addRecap(recap);
         recap.setContender(contender);
         recap.setOpponent(opponent);
     }
@@ -66,6 +65,7 @@ public class Match {
                 winner = opponent;
             }
             recap.setWinner(winner);                // Adds winner to Recap
+            ScoreBoard.addRecap(recap);
             tournament.matchEnded(winner);
         }
     }
@@ -81,6 +81,14 @@ public class Match {
 
     int getCurrentRound() {
         return currentRound;
+    }
+
+    Fighter getContender() {
+        return contender;
+    }
+
+    Fighter getOpponent() {
+        return opponent;
     }
 }
 

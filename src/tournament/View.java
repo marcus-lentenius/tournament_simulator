@@ -31,7 +31,9 @@ class View {
     static void printBracketMenu() {
         System.out.println(tournament.getBracket() + "\n" +
                 "Matches left: " + tournament.getMatches().size() + "\n" +
-                "1. Start next match\n" +
+                "1. Start " + tournament.getBracket() + " " +
+                                tournament.getMatches().get(0).getContender().getName() + " vs " +
+                                tournament.getMatches().get(0).getOpponent().getName() + "\n" +
                 "2. Show tournament status\n" +
                 "2. Quit");
     }

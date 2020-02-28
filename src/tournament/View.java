@@ -67,15 +67,15 @@ class View {
     }
 
     static void printActionDodge(String contenderName, String opponentName, Match match) {
-        addToRecap = String.format("%-7s punches but %s dodged",
-                contenderName, opponentName);
+        addToRecap = String.format("%-7s punches %-7s but %s dodged",
+                contenderName, opponentName, opponentName);
 
         match.getRecap().addToRecap(addToRecap);
         System.out.println(addToRecap);
     }
 
     static void printActionBlock(String contenderName, int contenderPower, String opponentName, int opponentBlockValue, Match match) {
-        addToRecap = String.format("%-7s punches %s with %-7d damage, %-7s blocks and mitigates %-7d of the damage",
+        addToRecap = String.format("%-7s punches %-7s with a power of %s, %-7s blocks and mitigates %s damage",
                 contenderName, opponentName, contenderPower, opponentName, opponentBlockValue);
 
         match.getRecap().addToRecap(addToRecap);
@@ -125,19 +125,12 @@ class View {
                 "Power:",
                 "Block:",
                 "Quote:");
-        Roster.getFighters().forEach(fighter -> {
-            System.out.printf("%-10s %-10s %-10s %-10s %-10s\n",
-                    fighter.getName(),
-                    fighter.getHealth(),
-                    fighter.getPower(),
-                    fighter.getBlockValue(),
-                    fighter.getQuote());
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+        Roster.getFighters().forEach(fighter -> System.out.printf("%-10s %-10s %-10s %-10s %-10s\n",
+                fighter.getName(),
+                fighter.getHealth(),
+                fighter.getPower(),
+                fighter.getBlockValue(),
+                fighter.getQuote()));
         System.out.println();
     }
 

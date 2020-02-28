@@ -11,14 +11,14 @@ public class Main {
     }
 
     static void createFighters() {
-        new Contender("one", 100, 323, 10, "Hells Yeah");
-        new Contender("two", 100, 233, 10, "Hells Yeah");
-        new Contender("three", 100, 233, 10, "Hells Yeah");
-        new Contender("four", 100, 233, 10, "Hells Yeah");
-        new Contender("five", 100, 233, 10, "Hells Yeah");
-        new Contender("six", 100, 233, 10, "Hells Yeah");
-        new Contender("seven", 100, 233, 10, "Hells Yeah");
-        new Contender("eight", 100, 233, 10, "Hells Yeah");
+        new Contender("one", 100, 30, 1, "Hells Yeah");
+        new Contender("two", 100, 30, 1, "Hells Yeah");
+        new Contender("three", 100, 30, 1, "Hells Yeah");
+        new Contender("four", 100, 30, 1, "Hells Yeah");
+//        new Contender("five", 100, 233, 10, "Hells Yeah");
+//        new Contender("six", 100, 233, 10, "Hells Yeah");
+//        new Contender("seven", 100, 233, 10, "Hells Yeah");
+//        new Contender("eight", 100, 233, 10, "Hells Yeah");
     }
 }
 

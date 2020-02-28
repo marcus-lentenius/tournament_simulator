@@ -10,6 +10,7 @@ class Match {
 
     private int currentRound = 1;
     private int contenderRoundsWon = 0;
+    private int opponentRoundsWon = 0;
 
     Match(Fighter contender, Fighter opponent) {
         this.recap = new Recap();
@@ -51,11 +52,12 @@ class Match {
             contenderRoundsWon++;
         } else if (opponent.getHealth() > 0) {
             View.printRoundWinner(opponent);
+            opponentRoundsWon++;
         }
 
         resetHealth();
 
-        if (currentRound <= 3) {                    // Runs the fight again until three rounds played
+        if (currentRound <= 3 && opponentRoundsWon != 2 && contenderRoundsWon != 2) {                    // Runs the fight again until three rounds played
             Menu.rounds(this);
         } else {
             Fighter winner;

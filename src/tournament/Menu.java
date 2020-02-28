@@ -11,6 +11,7 @@ class Menu {
     private static ArrayList<Fighter> fighters = Roster.getFighters();
 
     static void main() {
+        Roster.shuffleRoster();
         tournament.fillRounds(fighters);
 
         do {

@@ -1,6 +1,8 @@
 package tournament;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Roster {
     private static Roster instance = new Roster();
@@ -11,6 +13,10 @@ public class Roster {
 
     public static Roster getInstance() {
         return instance;
+    }
+
+    public static void shuffleRoster() {
+        Collections.shuffle(fighters);
     }
 
     void addFighter(Fighter fighter) {
